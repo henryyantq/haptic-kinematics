@@ -5,3 +5,5 @@ The advancement of modern robotic systems is inseparable from the development of
 
 ![image](https://user-images.githubusercontent.com/20149275/221476275-b997e816-c305-4e3f-896c-ab97ee19cc1a.png)
 
+In summary, our study presents a lightweight, data-driven material classification scheme achieved by modeling the haptic sensation using kinematic modalities. The experiment results demonstrate that the proposed framework possesses the advantages of low cost, low computing resource consumption, low latency, and sufficient robustness, highlighting its potential for practical application scenarios. The findings of this study contribute to the advancement of haptic-based material classification technology and provide valuable insights for further research in this area.
+
