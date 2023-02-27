@@ -1,5 +1,7 @@
 # Haptic Material Dataset and Kinematic-motivated Haptic Material Classification Network
 An official implementation of the paper _Learning Based Surface Material Classification utilizing Haptic Data Modeled with Kinematic Modalities_, including the HapMat datasets as well as the HapNet along with related files. The paper will be made available as soon as it is accepted (if possible) by IEEE IROS 2023.
 
+The advancement of modern robotic systems is inseparable from the development of artificial sensory modules and functions that provide robots with human-like perception. Among these, haptic sensation is of vital importance for high-end multisensory technologies. This paper focuses on haptic modeling and its application in surface material perception. Specifically, multiple kinematic modalities are utilized for haptics representation, namely the haptic-kinematic (HapKin) model. Additionally, we introduce a Haptic Surface Material (HapMat) dataset and propose a kinematics-motivated haptic surface material classification network (HapNet) trained and tested on our HapMat dataset. The results demonstrate the feasibility and outstanding performance of a purely-kinematic haptic scheme without the need for other perceptual modalities. Our study offers valuable insights for the advancement of material perception and classification technology in robotics research.
+
 ![image](https://user-images.githubusercontent.com/20149275/221476275-b997e816-c305-4e3f-896c-ab97ee19cc1a.png)
 
