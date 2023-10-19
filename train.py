@@ -2,11 +2,9 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 import random
-import time 
 import matplotlib.pyplot as plt
-from keras.utils import plot_model
-from keras.callbacks import ModelCheckpoint
-from keras.models import Model, load_model
+from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
+from keras.models import Model
 from keras.layers import Input, Add, Conv1D, LeakyReLU, BatchNormalization, Dense, Flatten, Dropout
 from keras.optimizers import Adam
 
@@ -44,11 +42,11 @@ if __name__ == '__main__':
     X_data_final = np.empty((3000, 10, 6), dtype=np.float32)
     y_data_final = np.zeros((3000, 5), dtype=int)
     
-    X_data[0:600, :, :] = preprocess('Fabric 1.csv')
-    X_data[600:1200, :, :] = preprocess('Leather 1.csv')
-    X_data[1200:1800, :, :] = preprocess('Metal 1.csv')
-    X_data[1800:2400, :, :] = preprocess('Paper 1.csv')
-    X_data[2400:3000, :, :] = preprocess('Wood 1.csv')
+    X_data[0:600, :, :] = preprocess('HapMat dataset/Fabric 1.csv')
+    X_data[600:1200, :, :] = preprocess('HapMat dataset/Leather 1.csv')
+    X_data[1200:1800, :, :] = preprocess('HapMat dataset/Metal 1.csv')
+    X_data[1800:2400, :, :] = preprocess('HapMat dataset/Paper 1.csv')
+    X_data[2400:3000, :, :] = preprocess('HapMat dataset/Wood 1.csv')
     
     for i in range(0, 5):
         for j in range(i * 600, (i + 1) * 600):
@@ -68,15 +66,10 @@ if __name__ == '__main__':
     split = int(0.7 * 3000)
     Accel_train, Gyro_train, y_train = Accel_data[:split], Gyro_data[:split], out_data[:split]
     Accel_test, Gyro_test, y_test = Accel_data[split:], Gyro_data[split:], out_data[split:]
-    # Here for Data Preprocessing
     
     # Model Construction
     accel_in = Input((10, 3), dtype='float32')
     gyro_in = Input((10, 3), dtype='float32')
-    
-    # callback = EarlyStopping(monitor='val_accuracy', baseline=0.80, restore_best_weights=True)
-    filepath = 'model_ext_{epoch:02d}-{val_accuracy:.2f}.h5'
-    checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', save_best_only=True, mode='max', period=1)
 
     la = Conv1D(filters=3, kernel_size=1, padding='causal', data_format='channels_last')(accel_in)
     la = LeakyReLU(alpha=0.2)(la)
@@ -118,18 +111,21 @@ if __name__ == '__main__':
     l = Dense(96, activation='relu')(l)
     l = Dropout(rate=0.2)(l)
     l = Dense(24, activation='relu')(l)
+
     final_out = Dense(5, activation='softmax')(l)
 
     hapnet = Model([accel_in, gyro_in], final_out, name='hapnet')
-    plot_model(hapnet, to_file='HapNet_structure.png', show_shapes=True)
     
     adam = Adam(learning_rate=5e-4)
-    '''
     hapnet.compile(
         optimizer=adam,
         loss='categorical_crossentropy',
         metrics=['accuracy']
         )
+    
+    filepath = 'best-model_{epoch:02d}-{val_accuracy:.2f}.h5'
+    checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', save_best_only=True, mode='max')
+    lr_scheduler = ReduceLROnPlateau(monitor='val_accuracy', factor=0.5, verbose=1, mode='max', min_delta=1e-5, min_lr=1e-5)
     
     history = hapnet.fit(
         [Accel_train, Gyro_train],
@@ -137,7 +133,7 @@ if __name__ == '__main__':
         epochs=120,
         batch_size=16,
         validation_data=([Accel_test, Gyro_test], y_test),
-        callbacks=[checkpoint]
+        callbacks=[checkpoint, lr_scheduler]
         )
     
     # hapnet.evaluate([Accel_test, Gyro_test], y_test) 
@@ -157,5 +153,3 @@ if __name__ == '__main__':
     plt.xlabel('epoch')
     plt.legend(loc='best')
     plt.savefig('accuracy_all.png')
-    '''
-
