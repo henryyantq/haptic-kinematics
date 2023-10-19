@@ -21,3 +21,13 @@ If you are a Mac user, please follow the [official document by Apple](https://de
 
 #### 2. For Windows/Linux users
 If you require an **Nvidia** GPU-accelerated implementation, install the Nvidia Driver and CUDA first before you ```pip install -r requirements.txt```. If you wish to run the codes with GPUs from other brands, e.g. AMD, Intel, please follow [the official document by Microsoft](https://learn.microsoft.com/en-us/windows/ai/directml/gpu-tensorflow-plugin) to deploy TensorFlow for DirectML, **which has NOT yet been examined by us**.
+
+#### 3. Train with HapMat dataset
+Simply run ```python train.py``` or ```python3 train.py``` will begin the training phase. The ```train.py``` programme automatically preprocesses the data under the ```HapMat dataset``` folder and feeds them to the predefined HapNet model. 
+
+#### 4. Making your own dataset
+It is extremely EASY to establish your own haptic-kinematic dataset, but before the retrieval, you need an IMU module (_with at least a 3-axis accelerometer and a 3-axis gyroscope_) **tightly sticked to a rigid object (e.g. a wooden stick)** and connected to a computing device. The computing device should be able to read and save your IMU outputs in **real-time**, and you should be able to know the **operating frequency** (the max. val. and the min. val.) of your IMU module so that the time stamps are correctly assigned for a single read. When you need to collect the haptic-kinematic data of any surface, all you need is to swipe the rigid object tightened with the IMU across the surface in a random pattern and at a normal speed (NOT too fast or too slow), and in the meantime, record the 3-axis linear acceleration data (accelerometer) as well as the 3-axis angular acceleration data (gyroscope) with your computing device. The data collection phase should NOT last too short, and after the recording, your data should be saved locally on your computing device. The ```preprocess``` function in ```train.py``` and ```infer.py``` natively accepts **.csv file** as the haptic-kinematic data of a single surface material. Therefore, it'll be a lot convenient of you to format your retrieved IMU data as shown in the image below saved it or re-saved it in .csv format:
+
+![image](https://github.com/henryyantq/haptic-kinematics/assets/20149275/9c900a3d-b798-4195-a640-3c0980b9eb7a)
+
+You can read the code directly for more details, since we are making our code as straightforward-to-read as possible.
