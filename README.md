@@ -1,5 +1,5 @@
 # Haptic Material Dataset and Kinematic-motivated Haptic Material Classification Network
-An official implementation of the paper _HapNet: A Learning-Based Haptic-Kinematic Model for Surface Material Classification in Robot Perception_, including the HapMat datasets as well as the HapNet along with related files. 
+An official implementation of the paper _HapNet: A Learning-Based Haptic-Kinematic Model for Surface Material Classification in Robot Perception_, including the HapMat dataset.zip as well as the HapNet .h5 pretrained model checkpoint, along with related files. 
 
 **The paper is now accepted by IEEE CASE 2023!** The open-access version of the paper can be downloaded from [Google Drive](https://drive.google.com/file/d/1221HU043OiFagdT_EtBUv9MBsV-KjA7t/view?usp=sharing). **Feel free to clone our full project, test, and even make improvements on your own.** We also STRONGLY suggest you utilize our given datasets for any testing purpose, especially making it much easier for you to try our pretrained model.
 
