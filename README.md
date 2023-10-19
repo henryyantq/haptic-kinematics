@@ -13,4 +13,11 @@ Abstract— The advancement of modern robotic systems is inseparable from the de
 
 ![image](https://github.com/henryyantq/haptic-kinematics/assets/20149275/e1944de4-6c9f-49c5-93c2-dd7b0e33fbf9)
 
+### How to run our codes
+The core of our project, HapNet, is written and trained in TensorFlow 2. Please follow the instructions below for users of different operating systems. These codes are recommended to be run on GPU-available devices, but notice that they are also made efficient to be deployed on **CPU-only** devices!
 
+#### 1. For Mac users
+If you are a Mac user, please follow the [official document by Apple](https://developer.apple.com/metal/tensorflow-plugin/) to install the GPU-enabled version of TensorFlow. You can skip this for a CPU-only implementation.
+
+#### 2. For Windows/Linux users
+If you require an **Nvidia** GPU-accelerated implementation, install the Nvidia Driver and CUDA first before you ```pip install -r requirements.txt```. If you wish to run the codes with GPUs from other brands, e.g. AMD, Intel, please follow [the official document by Microsoft](https://learn.microsoft.com/en-us/windows/ai/directml/gpu-tensorflow-plugin) to deploy TensorFlow for DirectML, **which has NOT yet been examined by us**.
