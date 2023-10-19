@@ -1,0 +1,5 @@
+# You need to install TensorFlow GPU in a dedicated way!
+numpy
+matplotlib
+pandas
+scikit-learn
