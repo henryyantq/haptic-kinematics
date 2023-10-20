@@ -35,3 +35,6 @@ The ```preprocess``` function in ```train.py``` and ```infer.py``` natively acce
 ![image](https://github.com/henryyantq/haptic-kinematics/assets/20149275/9c900a3d-b798-4195-a640-3c0980b9eb7a)
 
 You can read the code directly for more details, since we are making our code as straightforward-to-read as possible.
+
+### The key contribution
+Actually, the key point of this paper is NOT HapNet. Instead, just like the title "haptic-kinematics" of this repository, we are promoting the idea of exploiting haptic features on the basis of kinematic modality, when other works are extensively focusing on mechanical factors. Essentially, this paper explores and proves the feasibility of haptic representation in kinematic dimensions. You're WELCOMED to try new and more advanced neural network structure to enhance our result, or fulfill your own tasks with haptic-kinematics.
